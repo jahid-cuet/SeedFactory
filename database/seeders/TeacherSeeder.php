@@ -15,10 +15,33 @@ class TeacherSeeder extends Seeder
      */
     public function run()
     {
-        Teacher::create([
-            'name'=>'hasan',
-            'email'=>'hasan@gmail.com'
 
-        ]);
+        $teachers=collect([
+            [
+                'name'=>'hasan',
+                'email'=>'hasan@gmail.com'  
+        ],
+        
+        [
+            'name'=>'salman',
+            'email'=>'salman@gmail.com'  
+    ],
+        [
+            'name'=>'tajul',
+            'email'=>'tajul@gmail.com'  
+    ],
+        
+    ]);
+
+        $teachers->each(function($teachers){
+            Teacher::insert($teachers);
+
+        });
+
+        // Teacher::create([
+        //     'name'=>'hasan',
+        //     'email'=>'hasan@gmail.com'
+
+        // ]);
     }
 }
