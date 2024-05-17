@@ -16,8 +16,9 @@ class StudentSeeder extends Seeder
     public function run()
     {
         Student::create([
-            'name'=>'jahid',
-            'email'=>'jahid@gmail.com'
+            'name'=>fake()->name(),
+            'name'=>fake()->unique()->email(),
+            
 
         ]);
     }
