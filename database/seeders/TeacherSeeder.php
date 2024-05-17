@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\File;
 
 class TeacherSeeder extends Seeder
 {
@@ -15,33 +16,22 @@ class TeacherSeeder extends Seeder
      */
     public function run()
     {
-
-        $teachers=collect([
-            [
-                'name'=>'hasan',
-                'email'=>'hasan@gmail.com'  
-        ],
+        $json=File::get(path:'database/json/teachers.json');
+        // $teachers= json_decode($json);//Array
+         $teachers = collect(json_decode($json));
         
-        [
-            'name'=>'salman',
-            'email'=>'salman@gmail.com'  
-    ],
-        [
-            'name'=>'tajul',
-            'email'=>'tajul@gmail.com'  
-    ],
-        
-    ]);
 
-        $teachers->each(function($teachers){
-            Teacher::insert($teachers);
+        $teachers->each(function($teacher){
+            
+        Teacher::create([
+                    'name'=>$teacher->name,
+                    
+                    'email'=>$teacher->email
 
+                ]);
         });
 
-        // Teacher::create([
-        //     'name'=>'hasan',
-        //     'email'=>'hasan@gmail.com'
-
-        // ]);
+        
+        // Teacher::insert($teachers);
     }
 }
