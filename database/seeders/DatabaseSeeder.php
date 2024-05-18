@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Teacher;
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,14 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+    Student::factory()->count(10)->create();
+
         $this->call([
-        StudentSeeder::class,
         TeacherSeeder::class
         ]);
-
-
-
-
 
 
 
